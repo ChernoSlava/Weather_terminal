@@ -3,7 +3,7 @@
 
 <template>
   <div class="summary">
-    <div style="background-image: url('./img/weather-main/thunderstorm.png');" class="pic-main"></div>
+    <div style="background-image: url('./src/assets/img/weather-main/thunderstorm.png');" class="pic-main"></div>
     <div class="weather">
       <div class="temp">
         14 °C
@@ -24,7 +24,7 @@
 
 <style lang="sass" scoped>
 @import '../assets/styles/main'
-  .pic-main
+.pic-main
   width: 60px
   height: 60px
   margin: 20px 0 12px
