@@ -6,11 +6,11 @@ import Highlights from './components/Highlights.vue';
 import Coordinates from './components/Coordinates.vue';
 import Humidity from './components/Humidity.vue';
 
-const city = ref('Paris');
+const city = ref('Moscow');
 const weatherInfo = ref(null);
 
 function getWeather() {
-  fetch(`${BASE_URL}?q=${city}&appid=${API_KEY}`)
+  fetch(`${BASE_URL}?q=${city.value}&units=metric&appid=${API_KEY}`)
     .then((res) => res.json())
     .then((data) => weatherInfo.value = data)
 }
@@ -27,9 +27,14 @@ onMounted(getWeather);
             <section class="section section-left">
               <div class="info">
                 <div class="city-inner">
-                  <input v-model="city" type="text" class="search">
+                  <input 
+                    v-model="city" 
+                    type="text" 
+                    class="search"
+                    @keyup.enter="getWeather"
+                  >
                 </div>
-                <WeatherSummary />
+                <WeatherSummary :weatherInfo="weatherInfo"/>
               </div>
             </section>
             <section class="section section-right">
