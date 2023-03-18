@@ -1,4 +1,6 @@
 <script setup>
+import { getPresure } from '../utils';
+
 const props = defineProps({
   weatherInfo: {
     required: true,
@@ -8,7 +10,7 @@ const props = defineProps({
 
 function sun(data) {
   data = data * 1000;
-  return new Date(data).toLocaleString('en', {
+  return new Date(data).toLocaleString('ru', {
     // timeZone: 10800, 
     hour: 'numeric',
     minute: 'numeric',
@@ -85,7 +87,7 @@ function sun(data) {
             <div class="card-centered">
               <div class="info-main">
                 <div class="info-main-num">
-                  {{ weatherInfo?.main.pressure }}
+                  {{ getPresure(weatherInfo?.main.pressure) }}
                 </div>
                 <div class="info-main-text">
                   mm

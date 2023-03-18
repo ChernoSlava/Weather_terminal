@@ -10,3 +10,7 @@ export const today = new Date().toLocaleString('en-EN', {
   month: 'long', 
   day: 'numeric' 
 });
+
+export const getPresure = (gpas) => {
+  return Math.round(gpas / 1.333);
+}
