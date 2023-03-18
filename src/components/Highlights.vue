@@ -1,4 +1,21 @@
-<script setup></script>
+<script setup>
+const props = defineProps({
+  weatherInfo: {
+    required: true,
+    type: [Object, null],
+  }
+})
+
+function sun(data) {
+  data = data * 1000;
+  return new Date(data).toLocaleString('en', {
+    // timeZone: 10800, 
+    hour: 'numeric',
+    minute: 'numeric',
+    second: 'numeric'
+  })
+}
+</script>
 
 <template>
   <div class="section highlights">
@@ -16,7 +33,7 @@
             <div class="card-justify">
               <div class="info-main">
                 <div class="info-main-num">
-                  3.6
+                  {{ weatherInfo?.wind.speed }}
                 </div>
                 <div class="info-main-text">
                   m/s
@@ -24,7 +41,7 @@
               </div>
               <div class="info-main">
                 <div class="info-main-num">
-                  350
+                  {{ weatherInfo?.wind.deg }}
                 </div>
                 <div class="info-main-text">
                   deg
@@ -40,7 +57,7 @@
           <div class="card-small-info">
             <div class="card-small-data">
               <div class="info-main-num">
-                8.4
+                {{ weatherInfo?.wind.gust }}
               </div>
               <div class="info-main-text">
                 m/s
@@ -68,7 +85,7 @@
             <div class="card-centered">
               <div class="info-main">
                 <div class="info-main-num">
-                  765
+                  {{ weatherInfo?.main.pressure }}
                 </div>
                 <div class="info-main-text">
                   mm
@@ -84,7 +101,7 @@
           <div class="card-small-info">
             <div class="card-small-data">
               <div class="info-main-num">
-                21
+                {{ Math.round(weatherInfo?.main.feels_like) }}
               </div>
               <div class="info-main-text">
                 °C
@@ -113,7 +130,7 @@
                   Sunrise
                 </div>
                 <div class="state-time">
-                  07:31:42
+                  {{ sun(weatherInfo?.sys.sunrise) }}
                 </div>
               </div>
               <div class="state">
@@ -122,7 +139,7 @@
                   Sunset
                 </div>
                 <div class="state-time">
-                  18:34:19
+                  {{ sun(weatherInfo?.sys.sunset) }}
                 </div>
               </div>
             </div>
@@ -135,7 +152,7 @@
           <div class="card-small-info">
             <div class="card-small-data">
               <div class="info-main-num">
-                80
+                {{ weatherInfo?.clouds.all }}
               </div>
               <div class="info-main-text">
                 %
