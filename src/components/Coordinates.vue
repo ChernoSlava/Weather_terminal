@@ -1,4 +1,13 @@
-<script setup></script>
+<script setup>
+
+const props = defineProps({
+  weatherInfo: {
+    required: true,
+    type: [Object, null],
+  }
+})
+
+</script>
 
 <template>
   <div class="block-bottom">
@@ -7,7 +16,7 @@
       <div class="block-bottom-texts">
         <div class="block-bottom-text-block">
           <div class="block-bottom-text-block-title">
-            Longitude: 2.3488
+            Longitude: {{ weatherInfo?.coord.lon }}
           </div>
           <div class="block-bottom-text-block-desc">
             Longitude measures distance east or west of the prime meridian.
@@ -15,7 +24,7 @@
         </div>
         <div class="block-bottom-text-block">
           <div class="block-bottom-text-block-title">
-            Latitude: 48.8534
+            Latitude: {{ weatherInfo?.coord.lat }}
           </div>
           <div class="block-bottom-text-block-desc">
             Latitude lines start at the equator (0 degrees latitude) and run east and west, parallel to the

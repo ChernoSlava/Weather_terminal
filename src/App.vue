@@ -43,7 +43,7 @@ onMounted(getWeather);
           </div>
           <div class="sections">
             <section class="section-bottom">
-              <Coordinates />
+              <Coordinates :weatherInfo="weatherInfo"/>
             </section>
             <section class="section-bottom">
               <Humidity />
