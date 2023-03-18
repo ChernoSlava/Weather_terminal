@@ -27,26 +27,21 @@ onMounted(getWeather);
             <section class="section section-left">
               <div class="info">
                 <div class="city-inner">
-                  <input 
-                    v-model="city" 
-                    type="text" 
-                    class="search"
-                    @keyup.enter="getWeather"
-                  >
+                  <input v-model="city" type="text" class="search" @keyup.enter="getWeather">
                 </div>
-                <WeatherSummary :weatherInfo="weatherInfo"/>
+                <WeatherSummary :weatherInfo="weatherInfo" />
               </div>
             </section>
             <section class="section section-right">
-              <Highlights :weatherInfo="weatherInfo"/>
+              <Highlights :weatherInfo="weatherInfo" />
             </section>
           </div>
           <div class="sections">
             <section class="section-bottom">
-              <Coordinates :weatherInfo="weatherInfo"/>
+              <Coordinates :weatherInfo="weatherInfo" />
             </section>
             <section class="section-bottom">
-              <Humidity :weatherInfo="weatherInfo"/>
+              <Humidity :weatherInfo="weatherInfo" />
             </section>
           </div>
         </div>

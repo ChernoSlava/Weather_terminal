@@ -1,5 +1,5 @@
 <script setup>
-import { capitalizeFirstLetter } from '../utils'
+import { capitalizeFirstLetter, today } from '../utils'
 
 const props = defineProps({
   weatherInfo: {
@@ -8,7 +8,6 @@ const props = defineProps({
   }
 })
 
-const today = new Date().toLocaleString('en-EN', { weekday: 'short', year: 'numeric', month: 'long', day: 'numeric' })
 </script>
 
 <template>

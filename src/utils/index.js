@@ -3,3 +3,10 @@ export const capitalizeFirstLetter = (str) => {
 
   return str.charAt(0).toUpperCase() + str.slice(1);
 }
+
+export const today = new Date().toLocaleString('en-EN', { 
+  weekday: 'short', 
+  year: 'numeric', 
+  month: 'long', 
+  day: 'numeric' 
+});
