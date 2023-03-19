@@ -1,35 +1,22 @@
 <script setup>
-import { getPresure } from '../utils';
+import { getPresure, sun } from "../utils";
 
 const props = defineProps({
   weatherInfo: {
     required: true,
     type: [Object, null],
-  }
-})
+  },
+});
 
-function sun(data) {
-  data = data * 1000;
-  return new Date(data).toLocaleString('ru', {
-    // timeZone: 10800, 
-    hour: 'numeric',
-    minute: 'numeric',
-    second: 'numeric'
-  })
-}
 </script>
 
 <template>
   <div class="section highlights">
-    <div class="title">
-      Today's Highlights
-    </div>
+    <div class="title">Today's Highlights</div>
     <div class="highlights-wrapper">
       <div class="highlight">
         <div class="card">
-          <div class="card-title">
-            Wind
-          </div>
+          <div class="card-title">Wind</div>
           <div class="card-pic card-pic--wind"></div>
           <div class="card-info">
             <div class="card-justify">
@@ -37,40 +24,35 @@ function sun(data) {
                 <div class="info-main-num">
                   {{ weatherInfo?.wind.speed }}
                 </div>
-                <div class="info-main-text">
-                  m/s
-                </div>
+                <div class="info-main-text">m/s</div>
               </div>
               <div class="info-main">
                 <div class="info-main-num">
                   {{ weatherInfo?.wind.deg }}
                 </div>
-                <div class="info-main-text">
-                  deg
-                </div>
+                <div class="info-main-text">deg</div>
               </div>
             </div>
           </div>
         </div>
         <div class="card-small">
-          <div class="card-small-title">
-            Wind gusts
-          </div>
+          <div class="card-small-title">Wind gusts</div>
           <div class="card-small-info">
             <div class="card-small-data">
               <div class="info-main-num">
                 {{ weatherInfo?.wind.gust }}
               </div>
-              <div class="info-main-text">
-                m/s
-              </div>
+              <div class="info-main-text">m/s</div>
             </div>
             <div class="card-small-hint">
               <div class="card-small-pic card-small-pic--wind"></div>
               <div class="card-small-text text-egorova">
                 Learn
-                <a href="https://www.windy.com/articles/weather-phenomena-what-s-the-difference-between-sustained-winds-and-wind-gusts-10390?satellite,7.787,115.115,5"
-                  target="_blank">more</a>
+                <a
+                  href="https://www.windy.com/articles/weather-phenomena-what-s-the-difference-between-sustained-winds-and-wind-gusts-10390?satellite,7.787,115.115,5"
+                  target="_blank"
+                  >more</a
+                >
                 about gusts
               </div>
             </div>
@@ -79,9 +61,7 @@ function sun(data) {
       </div>
       <div class="highlight">
         <div class="card">
-          <div class="card-title">
-            Pressure
-          </div>
+          <div class="card-title">Pressure</div>
           <div class="card-pic card-pic--pressure"></div>
           <div class="card-info">
             <div class="card-centered">
@@ -89,76 +69,60 @@ function sun(data) {
                 <div class="info-main-num">
                   {{ getPresure(weatherInfo?.main.pressure) }}
                 </div>
-                <div class="info-main-text">
-                  mm
-                </div>
+                <div class="info-main-text">mm</div>
               </div>
             </div>
           </div>
         </div>
         <div class="card-small">
-          <div class="card-small-title">
-            Feels like
-          </div>
+          <div class="card-small-title">Feels like</div>
           <div class="card-small-info">
             <div class="card-small-data">
               <div class="info-main-num">
                 {{ Math.round(weatherInfo?.main.feels_like) }}
               </div>
-              <div class="info-main-text">
-                °C
-              </div>
+              <div class="info-main-text">°C</div>
             </div>
             <div class="card-small-hint">
-              <div class="card-small-pic card-small-pic--margin card-small-pic--pressure"></div>
-              <div class="card-small-text">
-                How hot or cold it really feels
-              </div>
+              <div
+                class="card-small-pic card-small-pic--margin card-small-pic--pressure"
+              ></div>
+              <div class="card-small-text">How hot or cold it really feels</div>
             </div>
           </div>
         </div>
       </div>
       <div class="highlight">
         <div class="card">
-          <div class="card-title">
-            Sunrise and sunset
-          </div>
+          <div class="card-title">Sunrise and sunset</div>
           <div class="card-pic card-pic--sun"></div>
           <div class="card-info">
             <div class="states">
               <div class="state">
                 <div class="state-pic"></div>
-                <div class="state-title">
-                  Sunrise
-                </div>
+                <div class="state-title">Sunrise</div>
                 <div class="state-time">
-                  {{ sun(weatherInfo?.sys.sunrise) }}
+                  {{ sun(weatherInfo?.sys.sunrise, weatherInfo?.timezone) }}
                 </div>
               </div>
               <div class="state">
                 <div class="state-pic state-pic--flipped"></div>
-                <div class="state-title">
-                  Sunset
-                </div>
+                <div class="state-title">Sunset</div>
                 <div class="state-time">
-                  {{ sun(weatherInfo?.sys.sunset) }}
+                  {{ sun(weatherInfo?.sys.sunset, weatherInfo?.timezone) }}
                 </div>
               </div>
             </div>
           </div>
         </div>
         <div class="card-small">
-          <div class="card-small-title">
-            Cloudiness
-          </div>
+          <div class="card-small-title">Cloudiness</div>
           <div class="card-small-info">
             <div class="card-small-data">
               <div class="info-main-num">
                 {{ weatherInfo?.clouds.all }}
               </div>
-              <div class="info-main-text">
-                %
-              </div>
+              <div class="info-main-text">%</div>
             </div>
             <div class="card-small-hint">
               <div class="card-small-pic card-small-pic--sun"></div>
@@ -302,7 +266,7 @@ function sun(data) {
     @media (max-width: 1199px)
       padding-bottom: 1.5px
       font-size: 12px
-      
+
 .card-small
   margin-top: 12px
   padding: 12px 16px

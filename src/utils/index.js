@@ -14,3 +14,13 @@ export const today = new Date().toLocaleString('en-EN', {
 export const getPresure = (gpas) => {
   return Math.round(gpas / 1.333);
 }
+
+export function sun(data, timezone) {
+  return new Date(
+    (data * 1000) + (new Date().getTimezoneOffset() * 60 * 1000) + (timezone * 1000)
+  ).toLocaleString("ru", {
+    hour: "numeric",
+    minute: "numeric",
+    second: "numeric",
+  });
+}
