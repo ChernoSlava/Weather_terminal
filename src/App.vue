@@ -26,8 +26,9 @@ onMounted(getWeather);
           <div class="sections">
             <section class="section section-left">
               <div class="info">
-                <div class="city-inner">
-                  <input v-model="city" type="text" class="search" @keyup.enter="getWeather">
+                <div class="city-inner" @keyup.enter="getWeather">
+                  <input v-model="city" type="text" class="search" >
+                  <nav @click="getWeather" class="city-inner__button"></nav>
                 </div>
                 <WeatherSummary :weatherInfo="weatherInfo" />
               </div>
@@ -96,7 +97,7 @@ onMounted(getWeather);
   display: inline-block
   width: 100%
 
-  &::after
+  &__button
     content: ''
     position: absolute
     top: 0
